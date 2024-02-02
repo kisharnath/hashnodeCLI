@@ -37,15 +37,15 @@ HN_TOKEN=${process.env.HN_TOKEN}
         return gitRepos ;
 }
 
-async function getReadmeFileContent(repoName){
+async function getReadmeFileContent(repoName,user,token){
 
-    const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+    const octokit = new Octokit({ token });
 
     gitRepos = [];
     let content = ''
 
-    await octokit.request(`GET /repos/${process.env.USER}/${repoName}/readme`, {
-        owner: process.env.USER,
+    await octokit.request(`GET /repos/${user}/${repoName}/readme`, {
+        owner: user,
         repo: repoName,
       }).then((data)=>{
         content = Decrypt(data.data.content)

@@ -7,7 +7,7 @@ function ConvertMdToString(filename){
         function readMarkdownFile(filePath) {
             try {
                 // Resolve the absolute path to the Markdown file
-                const absolutePath = path.resolve(__dirname, '../..', filePath);
+                const absolutePath = path.resolve(__dirname, '../../..', filePath);
                 
                 // Read the file synchronously
                 const markdownString = fs.readFileSync(absolutePath, 'utf8');

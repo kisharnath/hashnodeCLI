@@ -19,7 +19,7 @@ const questions = [
 
 ];
 
-function GitQuestion3(content){
+function GitQuestion3(content,gitUser,gitToken){
     let newQuestion = [];
     if (!process.env.HN_TOKEN){
 
@@ -61,17 +61,17 @@ function GitQuestion3(content){
     }
     inquirer.prompt(newQuestion).then(async(answers) => {
         const myhashnodeToken = process.env.HN_TOKEN?process.env.HN_TOKEN:answers.token;
-        gitpublishBlog(myhashnodeToken,answers.title,content,answers.pubName)
+        gitpublishBlog(myhashnodeToken,answers.title,content,answers.pubName,gitUser,gitToken)
     });
   
 }
 
-function GitQuestions2(q) {
+function GitQuestions2(q,user,token) {
     inquirer.prompt(q).then(async(answers) => {
 
-        const content = await getReadmeFileContent(answers.repo);
+        const content = await getReadmeFileContent(answers.repo,user,token);
         
-            GitQuestion3(content)
+            GitQuestion3(content,user,token)
         
 
     });
@@ -92,7 +92,7 @@ function GitQuestions2(q) {
             
         ]
         newQuestion[0].choices = repos
-        GitQuestions2(newQuestion)
+        GitQuestions2(newQuestion,process.env.USER,process.env.GITHUB_TOKEN)
 
     }else {
     inquirer.prompt(questions).then(async(answers) => {
@@ -108,7 +108,7 @@ function GitQuestions2(q) {
             
         ]
         newQuestion[0].choices = repos
-        GitQuestions2(newQuestion)
+        GitQuestions2(newQuestion,answers.username,answers.token)
 
     });
     }
