@@ -21,7 +21,7 @@ const {writeHasnodeToken} = require('../Utilities/writeHnToken')
         "publicationId": pubId,
         "contentMarkdown": content,
         "publishedAt": date,
-        "slug" : title.toLowerCase(),
+        "slug" : title.toLowerCase().split(" ").join(""),
         "tags": [{"id":tagId}],
     }
 
@@ -41,7 +41,7 @@ const {writeHasnodeToken} = require('../Utilities/writeHnToken')
 
     await request({url:'https://gql.hashnode.com' ,document:query,variables:variable,requestHeaders:{"Authorization":Hntoken}})
     .then(data=>{
-      const link = pubName+"/"+title.toLowerCase()
+      const link = pubName+"/"+title.toLowerCase().split(" ").join("");
       console.log("You have successfully uploaded your blog","Visit the link",link)})
 }
 

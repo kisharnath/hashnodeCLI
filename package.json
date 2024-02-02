@@ -1,6 +1,6 @@
 {
   "name": "comhash",
-  "version": "6.0.0",
+  "version": "8.0.0",
   "description": "comhash is a command-line interface (CLI) tool designed to streamline the process of creating and uploading blog posts to Hashnode, your favorite blogging platform. With just a few simple commands, you can initiate a new blog post, draft your content, and seamlessly publish it to your Hashnode profile, all without leaving the comfort of your terminal.",
   "main": "index.js",
   "bin": "index.js",

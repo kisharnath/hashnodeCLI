@@ -9,7 +9,7 @@ const inquirer = require('inquirer');
 
     let questionToBeAsked = []
 
-    if( !process.env.HASHNODE_TOKEN ){
+    if( !process.env.HN_TOKEN ){
       questionToBeAsked = [
         {
           type:"input",
@@ -90,7 +90,7 @@ USER=${process.env.USER}
         "publicationId": pubId,
         "contentMarkdown": content,
         "publishedAt": date,
-        "slug" : an.title.toLowerCase(),
+        "slug" : an.title.toLowerCase().split(" ").join(""),
         "tags": [{"id":tagId}],
     }
 
@@ -110,7 +110,7 @@ USER=${process.env.USER}
 
     await request({url:'https://gql.hashnode.com' ,document:query,variables:variable,requestHeaders:{"Authorization":token}})
     .then(data=>{
-      const link = an.publication+"/"+an.title.toLowerCase()
+      const link = an.publication+"/"+an.title.toLowerCase().split(" ").join("")
       console.log("You have successfully uploaded your blog (Note : software-engineering is by defualt tag)","Visit the link",link)})
      }).catch(error=>{console.log("Something went worng check your publication name , filename name and title")})
 
